@@ -16,7 +16,7 @@ function setup() {
 
   wall3 = createSprite(60,140,5,5);
   wall3.shapeColor = "lightblue";
-  wall2.velocityX=-7
+  wall3.velocityX=-7
 
  wall4 = createSprite(180,250,5,5);
   wall4.shapeColor = "red";
@@ -38,7 +38,7 @@ function setup() {
   cup.shapeColor = "yellow";
   
   score = 1;
-
+wallg=new Group()
  
 }
 
@@ -48,6 +48,7 @@ function draw() {
   background("black");
   keyPressed(); 
   text("Level: "+ score, 220,20);
+  
   if (keyDown("RIGHT_ARROW")){
   
 sofia.velocityX=4;
@@ -84,37 +85,57 @@ if(sofia.isTouching(wall1)){
   sofia.velocityX=0;
   sofia.velocityY=0;
   wall1.velocityX=0
+  fill("purple")
+  textSize(15);
+  text("You Died!!!",175,200);
+ 
 }
 
 if(sofia.isTouching(wall2)){
   sofia.velocityX=0;
   sofia.velocityY=0;
   wall2.velocityX=0
-
+  fill("purple")
+  textSize(15);
+  text("You Died!!!",175,200);
 }
+ 
+
 if(sofia.isTouching(wall3)){
   sofia.velocityX=0;
   sofia.velocityY=0;
   wall3.velocityX=0
-  
+  fill("purple")
+  textSize(15);
+  text("You Died!!!",175,200);
 }
+  
+
 if(sofia.isTouching(wall4)){
   sofia.velocityX=0;
   sofia.velocityY=0;
   wall4.velocityX=0
+  fill("purple")
+  textSize(15);
+  text("You Died!!!",175,200);
   
 }
 if(sofia.isTouching(wall5)){
   sofia.velocityX=0;
   sofia.velocityY=0;
   wall5.velocityX=0
-  
+  fill("purple")
+  textSize(15);
+  text("You Died!!!",175,200);
 }
 if(sofia.isTouching(wall6)){
   
   sofia.velocityX=0;
   sofia.velocityY=0;
   wall6.velocityX=0
+  fill("purple")
+  textSize(15);
+  text("You Died!!!",175,200);
 
 }
 if(sofia.isTouching(wall7)){
@@ -122,9 +143,23 @@ if(sofia.isTouching(wall7)){
   sofia.velocityX=0;
   sofia.velocityY=0;
   wall7.velocityX=0
-
+  fill("purple")
+  textSize(15);
+  text("You Died!!!",175,200);
 }
-  edges = createEdgeSprites();
+if(sofia.isTouching(wallg)){
+  //How do I make wall g and sphia freeze and have the text
+  wallg.shapeColor = "white"; 
+  sofia.velocityX=0;
+  sofia.velocityY=0;
+  wallg.velocityX=0;
+ 
+  fill("purple")
+ textSize(15);
+ text("You Died!!!",175,200);
+} 
+
+edges = createEdgeSprites();
   sofia.bounceOff(edges);
   wall1.bounceOff(edges);
   wall2.bounceOff(edges);
@@ -133,6 +168,7 @@ if(sofia.isTouching(wall7)){
   wall5.bounceOff(edges);
   wall6.bounceOff(edges);
   wall7.bounceOff(edges);
+  wallg.bounceOff(edges);
   
   drawSprites();
   
@@ -152,11 +188,11 @@ function keyPressed() {
   }
 
   function newblock(){
-    //how to create bouce off and is touching for wall if it is in function?
- var wall = createSprite(0,Math.round(random(20, 370)), 10, 10);
+   
+ var wall = createSprite(0,Math.round(random(20, 370)), 5, 5);
     wall.x= Math.round(random(30, 370)); 
     wall.y= Math.round(random(30, 370));
     wall.velocityX=-7
-    
-    wall.bounceOff(edges);
+  
+    wallg.add(wall)
   }

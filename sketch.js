@@ -1,5 +1,6 @@
 var sofia,wall1,wall2,wall3,wall4,wall5,wall6,wall7,cup,wall;
 var score=1;
+var point=0;
 
 function setup() {
   createCanvas(400, 400);
@@ -23,7 +24,7 @@ function setup() {
   wall4.velocityX=7
 
   wall5 = createSprite(370,130,5,5);
-  wall5.shapeColor = "pink";
+  wall5.shapeColor = "white";
   wall5.velocityX=-7
 
   wall6 = createSprite(300,330,5,5);
@@ -38,6 +39,7 @@ function setup() {
   cup.shapeColor = "yellow";
   
   score = 1;
+  point=0;
 wallg=new Group()
  
 }
@@ -48,7 +50,7 @@ function draw() {
   background("black");
   keyPressed(); 
   text("Level: "+ score, 220,20);
-  
+  text("point: "+ point, 110,20);
   if (keyDown("RIGHT_ARROW")){
   
 sofia.velocityX=4;
@@ -77,7 +79,7 @@ if(sofia.isTouching(cup)){
   sofia.y = 25;
   score=score+1
   newblock()
-  
+  newblock()
 }
 
 
@@ -149,15 +151,10 @@ if(sofia.isTouching(wall7)){
 }
 if(sofia.isTouching(wallg)){
   //How do I make wall g and sphia freeze and have the text
-  wallg.shapeColor = "white"; 
-  sofia.velocityX=0;
-  sofia.velocityY=0;
-  wallg.velocityX=0;
- 
-  fill("purple")
- textSize(15);
- text("You Died!!!",175,200);
+ point=point+1
+ wallg.destroyEach()
 } 
+
 
 edges = createEdgeSprites();
   sofia.bounceOff(edges);
@@ -169,7 +166,9 @@ edges = createEdgeSprites();
   wall6.bounceOff(edges);
   wall7.bounceOff(edges);
   wallg.bounceOff(edges);
-  
+  while(sofia.isTouching(wallg)){ sofia.velocityX=0;
+    sofia.velocityY=0;
+    wall1.velocityX=0}
   drawSprites();
   
 }
@@ -184,15 +183,21 @@ function keyPressed() {
    wall4.velocityX=7
    wall5.velocityX=-7
    wall6.velocityX=0 
+   point=0
+   score=1
 	}
   }
 
   function newblock(){
    
- var wall = createSprite(0,Math.round(random(20, 370)), 5, 5);
+ var wall = createSprite(0,Math.round(random(20, 370)), 15, 5);
+ wall.lifetime = 40;
     wall.x= Math.round(random(30, 370)); 
     wall.y= Math.round(random(30, 370));
+    wall.shapeColor = "pink";
     wall.velocityX=-7
-  
     wallg.add(wall)
+  
   }
+
+ 

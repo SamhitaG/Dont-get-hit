@@ -1,2 +1,1 @@
-# Sofia-in-maze-land
-One day, Sofia woke up and realized that her cup was missing and she was trapped in maze land! Can you help her get to her cup?
+You are trying to get to not gett hit or caought by the gards lets see how many levels you can go till you don't get hit!!
